@@ -6,6 +6,7 @@
 
 import collections
 import math
+import numba
 import numpy as np
 import sys
 
@@ -19,6 +20,7 @@ CGStatus = collections.namedtuple('CGStatus',
                                   ['converged', 'iters', 'residual'])
 
 
+@numba.jit(nopython=True, cache=True)
 def cg(x, x_old, b, boundary, options, tolerance, maxiters):
 
     # Initialize temporary storage

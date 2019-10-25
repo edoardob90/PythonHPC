@@ -10,6 +10,7 @@
 import collections
 import math
 import matplotlib
+import numba
 import numpy as np
 import os
 import sys
@@ -52,6 +53,7 @@ def parse_arg(v, argname, fn):
     return v
 
 
+@numba.jit(nopython=True, cache=True)
 def timeloop(x, boundary, options, max_cg_iters, max_newton_iters, tolerance):
     # main timeloop
 
